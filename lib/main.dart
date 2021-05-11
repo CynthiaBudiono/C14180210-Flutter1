@@ -14,6 +14,8 @@ class _MyAppState extends State<MyApp> {
   int nomor = 0;
   int pengali = 1;
   String ubah = "Angka";
+
+  get padding => null;
   void hitkali() {
     setState(() {
       pengali = pengali * 2;
@@ -22,14 +24,13 @@ class _MyAppState extends State<MyApp> {
 
   void hittambah() {
     setState(() {
+      nomor = nomor + pengali;
       if(ubah == "Angka"){
         print(nomor);
-        nomor = nomor + pengali;
         hasil = hasil + nomor.toString() + " ";
       }
       else{
         print(nomor);
-        nomor = nomor + pengali;
         hasil = hasil + String.fromCharCode(nomor+64) + " ";
       }
      
@@ -50,6 +51,7 @@ class _MyAppState extends State<MyApp> {
   void hitreset() {
     setState(() {
       hasil = "";
+      nomor = 0;
       pengali = 1;
       ubah = "Angka";
     });
@@ -76,8 +78,9 @@ class _MyAppState extends State<MyApp> {
               Text("Hasil : " + hasil.toString()),
               Text(ubah.toString()),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children:
+                  <Widget>[
                     RaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -103,9 +106,10 @@ class _MyAppState extends State<MyApp> {
                         ),
                         child: Text("RESET"),
                         onPressed: hitreset,
-                        color: Colors.lightBlueAccent)
-                  ])
+                        color: Colors.lightBlueAccent),
+                  ]), 
             ],
+            
           ),
         ),
       ),
